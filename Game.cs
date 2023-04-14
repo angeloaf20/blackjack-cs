@@ -68,6 +68,10 @@ namespace Blackjack
             do
             {
                 PlayerSum = GetSum(PlayerHand);
+                if (PlayerSum > 21)
+                {
+                    break;
+                }
                 Menu(PlayerHand, DealerHand, PlayerSum);
                 int choice = Convert.ToInt32(Console.ReadLine());
                 while (choice != 1 && choice != 2)
@@ -84,6 +88,14 @@ namespace Blackjack
                     break;
                 }
             } while (PlayerSum < 21);
+            if (PlayerSum == 21)
+            {
+                Console.WriteLine("You got to 21! Nice!");
+            }
+            else if (PlayerSum > 21)
+            {
+                Console.WriteLine($"You went over 21! Your sum is {PlayerSum}");
+            }
             return PlayerSum;
         }
         public static int HitDealerHand(List<string> GameDeck, List<string> DealerHand, int PlayerSum)
